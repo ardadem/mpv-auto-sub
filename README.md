@@ -1,5 +1,7 @@
 # mpv-auto-sub
 
+Automatically search and fetch subtitle via subliminal in mpv.
+
 ## Installation
 
 First, you need to install [subliminal](https://github.com/Diaoul/subliminal)
@@ -14,7 +16,7 @@ That's it!
 
 ## Configuration
 
-Edit configuration section in `~/.config/mpv/scripts` with your favorite text editor.
+Edit configuration section in `~/.config/mpv/scripts/auto-sub.lua` with your favorite text editor.
 
 ## Usage
 
