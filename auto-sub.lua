@@ -7,7 +7,7 @@ local autoLoadDownloadedSub = true
 
 local utils = require 'mp.utils'
 
-function prepare(path)
+function prepare(name, path)
     vidPath = path
     subPath = subDownloadDirPath .. string.gsub(mp.get_property('filename'), "%.%w+$", ".srt")
  
