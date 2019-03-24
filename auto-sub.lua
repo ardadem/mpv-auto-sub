@@ -29,6 +29,11 @@ function run()
     mp.osd_message("Fetching subtitle")
     local p = utils.subprocess({ args = {subliminalPath, "download", "-s", "-f", "-l", subLanguage, "-d", subDownloadDirPath, vidPath}})
     if p.error == nil then
+        if load_subtitle(subPath) then
+            mp.osd_message("Subtitle successfully loaded")
+        else
+            mp.osd_message("Subtitle couldn't load")
+        end
         load_subtitle(subPath)
     else
         mp.osd_message("Subtitle couldn't fetch")
@@ -36,11 +41,7 @@ function run()
 end
 
 function load_subtitle(path)
-    if mp.commandv("sub_add", path) then
-        mp.osd_message("Subtitle successfully loaded")
-    else
-        mp.osd_message("Subtitle couldn't load")
-    end
+    return mp.commandv("sub_add", path)
 end
 
 function exists(file)
