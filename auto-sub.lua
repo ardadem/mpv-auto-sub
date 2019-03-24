@@ -7,15 +7,10 @@ local autoLoadDownloadedSub = true
 
 local utils = require 'mp.utils'
 
-local vidName
-local vidPath
-local subPath
-
-function prepare()
-    vidName = mp.get_property('filename')
-    vidPath = mp.get_property('path')
-    subPath = subDownloadDirPath .. string.gsub(vidName, "%.%w+$", ".srt")
-    
+function prepare(path)
+    vidPath = path
+    subPath = subDownloadDirPath .. string.gsub(mp.get_property('filename'), "%.%w+$", ".srt")
+ 
     if not exists(subDownloadDirPath) then
         os.execute("mkdir " .. subDownloadDirPath)
     else
@@ -34,7 +29,6 @@ function run()
         else
             mp.osd_message("Subtitle couldn't load")
         end
-        load_subtitle(subPath)
     else
         mp.osd_message("Subtitle couldn't fetch")
     end
@@ -54,5 +48,5 @@ function exists(file)
     return ok, err
 end
 
-mp.register_event("file-loaded", prepare)
+mp.observe_property('path', 'string', prepare)
 mp.add_key_binding('b', 'run_auto_sub', run)
