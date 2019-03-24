@@ -26,7 +26,6 @@ function prepare()
 end
 
 function run()
-    prepare()
     mp.osd_message("Fetching subtitle")
     local p = utils.subprocess({ args = {subliminalPath, "download", "-s", "-f", "-l", subLanguage, "-d", subDownloadDirPath, vidPath}})
     if p.error == nil then
