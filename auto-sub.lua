@@ -16,10 +16,10 @@ function prepare()
     vidPath = mp.get_property('path')
     subPath = subDownloadDirPath .. string.gsub(vidName, "%.%w+$", ".srt")
     
-    if not exists(subDownloadDirPath) == true then
+    if not exists(subDownloadDirPath) then
         os.execute("mkdir " .. subDownloadDirPath)
     else
-        if (autoLoadDownloadedSub == true and exists(subPath) == true) then
+        if (autoLoadDownloadedSub and exists(subPath)) then
             load_subtitle(subPath)
 	end
     end
